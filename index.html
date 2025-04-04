@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ajouter au Calendrier</title>
+</head>
+<body>
+    <h2>🎂 30 ans de Quentin 🎉</h2>
+    <p>Ajoute l'événement à ton calendrier en cliquant sur le bouton ci-dessous :</p>
+    <button onclick="addToCalendar()">Ajouter au calendrier</button>
+
+    <script>
+        function addToCalendar() {
+            const eventTitle = encodeURIComponent("🎂 30 ans de Quentin 🎉");
+            const startDate = "20251010T190000Z";
+            const endDate = "20251012T180000Z";
+            const location = encodeURIComponent("Paris");
+            const description = encodeURIComponent("www.shotai.fr/30ansQuentin - Mot de passe : Q123456789");
+
+            if (/iPhone|iPad|iPod/.test(navigator.userAgent)) {
+                // iPhone: Utiliser le protocole webcal avec un lien direct Dropbox
+                const webcalUrl = "webcal://www.dropbox.com/s/ipjn8w0gwn73ahy6gkuf8/30ans_Quentin.ics?dl=1";
+                window.location.href = webcalUrl;
+            } else {
+                // Android: Utiliser Google Calendar
+                const googleUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${eventTitle}&dates=${startDate}/${endDate}&details=${description}&location=${location}`;
+                window.location.href = googleUrl;
+            }
+        }
+    </script>
+</body>
+</html>
